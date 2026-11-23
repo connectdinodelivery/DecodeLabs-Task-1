@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="DecodeLabs Industrial Training Kit - Project 1: The Responsive Architecture. A mobile-first, semantic, and accessible web interface built with pure HTML5, CSS3, and JavaScript.">
+  <meta name="keywords" content="DecodeLabs, Responsive Web Design, CSS Grid, Flexbox, Semantic HTML5, Mobile First, WCAG">
+  <meta name="author" content="DecodeLabs Full-Stack Intern Team - Batch 2026">
+  <title>The Responsive Architecture | DecodeLabs Project 1</title>
+
+  <!-- Google Fonts: Montserrat (Headlines) & Open Sans (Body) - Max 2 families -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23A5856F'/><path d='M30 70 L50 30 L70 70 Z' fill='%23F2F0EA'/><circle cx='50' cy='52' r='10' fill='%23A0D4E0'/></svg>">
+</head>
+<body>
+  <!-- Accessible Skip Navigation Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Top Bar Announcement -->
+  <aside class="announcement-bar" aria-label="Program Announcement">
+    <div class="announcement-content">
+      <span class="badge badge-accent">Batch 2026</span>
+      <p><strong>DecodeLabs Industrial Training Kit:</strong> Project 1 Milestone — The Responsive Architecture</p>
+      <span class="announcement-pill">Standard: WCAG 2.2 Adherent</span>
+    </div>
+  </aside>
+
+  <!-- Global Header & Navigation -->
+  <header class="site-header" id="site-header">
+    <div class="header-inner container">
+      <!-- Brand Logo -->
+      <a href="#" class="brand-logo" aria-label="DecodeLabs Architecture Home">
+        <svg class="brand-icon" width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="36" height="36" rx="8" fill="var(--color-mocha)"/>
+          <path d="M8 26L18 10L28 26H8Z" stroke="var(--color-moonlit)" stroke-width="2.2" stroke-linejoin="round"/>
+          <circle cx="18" cy="20" r="3.5" fill="var(--color-ethereal)"/>
+          <line x1="12" y1="26" x2="24" y2="26" stroke="var(--color-ethereal)" stroke-width="2"/>
+        </svg>
+        <span class="brand-text">Decode<span class="brand-highlight">Labs</span></span>
+        <span class="brand-tag">P1</span>
+      </a>
+
+      <!-- Desktop & Mobile Navigation Links -->
+      <nav class="main-nav" id="main-nav" aria-label="Primary Navigation">
+        <ul class="nav-list" role="list">
+          <li class="nav-item"><a href="#blueprint" class="nav-link active">Blueprint</a></li>
+          <li class="nav-item"><a href="#execution-roadmap" class="nav-link">Roadmap</a></li>
+          <li class="nav-item"><a href="#architecture-grid" class="nav-link">Modules</a></li>
+          <li class="nav-item"><a href="#design-system" class="nav-link">Tokens</a></li>
+          <li class="nav-item"><a href="#audit-standards" class="nav-link">Standards</a></li>
+        </ul>
+      </nav>
+
+      <!-- Utility Actions (Search, Saved Counter, Mobile Toggle) -->
+      <div class="header-actions">
+        <button type="button" class="btn-icon" id="search-toggle-btn" aria-label="Open search bar" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+
+        <!-- Saved Bookmarks Counter Pill -->
+        <button type="button" class="btn-bookmarks" id="bookmarks-drawer-toggle" aria-label="View Saved Modules" title="View Saved Modules">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+          </svg>
+          <span class="bookmarks-label">Saved</span>
+          <span class="bookmarks-count" id="bookmarks-counter" aria-live="polite">0</span>
+        </button>
+
+        <!-- Theme Contrast Mode Toggle -->
+        <button type="button" class="btn-icon theme-toggle" id="theme-toggle" aria-label="Toggle High-Contrast Warmth Mode" title="Toggle Contrast Mode">
+          <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+
+        <!-- Mobile Hamburger Menu Button -->
+        <button type="button" class="mobile-menu-btn" id="mobile-menu-btn" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Collapsible Search Bar Drawer -->
+    <div class="header-search-bar" id="header-search-drawer" hidden>
+      <div class="container search-container">
+        <label for="global-search-input" class="visually-hidden">Search training kit curriculum</label>
+        <div class="search-input-wrapper">
+          <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="search" id="global-search-input" placeholder="Search architecture modules, landmarks, CSS properties..." autocomplete="off">
+          <button type="button" id="clear-search-btn" class="clear-btn" aria-label="Clear search query" hidden>&times;</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Landmark -->
+  <main id="main-content" tabindex="-1">
+
+    <!-- Hero Section: Pillar 1 & 2 Blueprint -->
+    <section class="hero-section" id="blueprint" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <!-- Hero Text Column -->
+        <div class="hero-content">
+          <div class="hero-eyebrow">
+            <span class="pulse-indicator" aria-hidden="true"></span>
+            <span>Batch 2026 • Industrial Training Kit</span>
+          </div>
+          <h1 id="hero-title" class="hero-heading">
+            You Are The <span class="highlight-underline">Architect.</span><br>
+            Build the Future.
+          </h1>
+          <p class="hero-subtext">
+            A strategic execution framework for full-stack interns. Step beyond fixed dimensions into pure responsive adaptability. Before complex backends and databases, master the foundational crafts of <strong>Semantic HTML5</strong>, <strong>CSS Grid & Flexbox</strong>, and <strong>Accessible Interaction</strong>.
+          </p>
+          <div class="hero-cta-group">
+            <a href="#architecture-grid" class="btn btn-primary">
+              <span>Explore Curriculum</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+            <a href="#design-system" class="btn btn-secondary">
+              <span>2025/2026 Style Tokens</span>
+            </a>
+          </div>
+
+          <!-- Hero Metrics -->
+          <ul class="hero-stats" role="list">
+            <li class="stat-item">
+              <span class="stat-value">0</span>
+              <span class="stat-unit">Frameworks</span>
+              <span class="stat-desc">Pure Vanilla Web Standards</span>
+            </li>
+            <li class="stat-item">
+              <span class="stat-value">3</span>
+              <span class="stat-unit">Breakpoints</span>
+              <span class="stat-desc">Mobile, Tablet, Desktop</span>
+            </li>
+            <li class="stat-item">
+              <span class="stat-value">100%</span>
+              <span class="stat-unit">WCAG 2.2</span>
+              <span class="stat-desc">Accessible Landmark Tree</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Hero Blueprint & Device Mockup Visual -->
+        <div class="hero-visual" aria-hidden="true">
+          <div class="blueprint-canvas">
+            <!-- Grid backdrop lines -->
+            <div class="grid-measure-tag top-left">1920px Macro</div>
+            <div class="grid-measure-tag bottom-right">clamp() Fluid Typography</div>
+
+            <!-- Interactive Responsive Device Simulator Mockup -->
+            <div class="device-showcase">
+              <!-- Desktop Frame -->
+              <div class="mockup-screen desktop-frame">
+                <div class="frame-bar">
+                  <span class="dot"></span>
+                  <span class="dot"></span>
+                  <span class="dot"></span>
+                  <span class="url-bar">https://decodelabs.tech/project-1</span>
+                </div>
+                <div class="frame-content">
+                  <div class="mockup-header-sim">
+                    <div class="mock-nav-logo"></div>
+                    <div class="mock-nav-links">
+                      <span></span><span></span><span></span>
+                    </div>
+                  </div>
+                  <div class="mockup-body-sim">
+                    <div class="mock-hero-sim">
+                      <div class="mock-text-large"></div>
+                      <div class="mock-text-medium"></div>
+                      <div class="mock-button"></div>
+                    </div>
+                    <div class="mock-grid-sim">
+                      <div class="mock-card"></div>
+                      <div class="mock-card"></div>
+                      <div class="mock-card"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tablet Overlay Frame -->
+              <div class="mockup-screen tablet-frame">
+                <div class="frame-bar">
+                  <span class="tablet-speaker"></span>
+                </div>
+                <div class="frame-content">
+                  <div class="mock-text-medium"></div>
+                  <div class="mock-card-wide"></div>
+                  <div class="mock-card-wide"></div>
+                </div>
+              </div>
+
+              <!-- Mobile Overlay Frame -->
+              <div class="mockup-screen mobile-frame">
+                <div class="frame-notch"></div>
+                <div class="frame-content">
+                  <div class="mock-mobile-header"></div>
+                  <div class="mock-mobile-card"></div>
+                  <div class="mock-mobile-card"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating Badge -->
+            <div class="floating-blueprint-badge">
+              <span class="badge-icon">📐</span>
+              <div>
+                <strong>Mobile-First Paradigm</strong>
+                <p>Grid Macro + Flex Micro</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Execution Roadmap Section (Pillar 1: Strategy & Roadmap from Slide 12) -->
+    <section class="section roadmap-section" id="execution-roadmap" aria-labelledby="roadmap-title">
+      <div class="container">
+        <header class="section-header">
+          <span class="section-tag">Pillar 1: The Blueprint</span>
+          <h2 id="roadmap-title" class="section-title">The 6-Step Execution Roadmap</h2>
+          <p class="section-subtitle">
+            A phased lifecycle transforming low-fidelity empathy insights into production-grade, audited web infrastructure.
+          </p>
+        </header>
+
+        <ol class="roadmap-stepper" role="list">
+          <li class="roadmap-step active" data-step="1">
+            <div class="step-marker">
+              <span class="step-num">1</span>
+            </div>
+            <div class="step-body">
+              <span class="step-category">Discovery</span>
+              <h3 class="step-title">Define "How Might We"</h3>
+              <p class="step-desc">Employ Empathy Maps (Says, Thinks, Does, Feels) to discover friction and user needs.</p>
+            </div>
+          </li>
+
+          <li class="roadmap-step" data-step="2">
+            <div class="step-marker">
+              <span class="step-num">2</span>
+            </div>
+            <div class="step-body">
+              <span class="step-category">Wireframing</span>
+              <h3 class="step-title">Grayscale Mobile-First</h3>
+              <p class="step-desc">Establish strict information hierarchy. "If it doesn't work in grayscale, color won't fix it."</p>
+            </div>
+          </li>
+
+          <li class="roadmap-step" data-step="3">
+            <div class="step-marker">
+              <span class="step-num">3</span>
+            </div>
+            <div class="step-body">
+              <span class="step-category">Semantics</span>
+              <h3 class="step-title">HTML5 Landmarks</h3>
+              <p class="step-desc">Construct the bedrock: <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;footer&gt;</code>.</p>
+            </div>
+          </li>
+
+          <li class="roadmap-step" data-step="4">
+            <div class="step-marker">
+              <span class="step-num">4</span>
+            </div>
+            <div class="step-body">
+              <span class="step-category">Styling</span>
+              <h3 class="step-title">CSS Grid & 2025 Palette</h3>
+              <p class="step-desc">Form 2D macro layouts with Grid, micro alignments with Flexbox, and fluid typography via <code>clamp()</code>.</p>
+            </div>
+          </li>
+
+          <li class="roadmap-step" data-step="5">
+            <div class="step-marker">
+              <span class="step-num">5</span>
+            </div>
+            <div class="step-body">
+              <span class="step-category">Logic</span>
+              <h3 class="step-title">State & Interactivity</h3>
+              <p class="step-desc">Pure JavaScript: bookmark persistence, filter operations, responsive drawers, and modal workflows.</p>
+            </div>
+          </li>
+
+          <li class="roadmap-step" data-step="6">
+            <div class="step-marker">
+              <span class="step-num">6</span>
+            </div>
+            <div class="step-body">
+              <span class="step-category">Audit</span>
+              <h3 class="step-title">LCP, CLS & WCAG 2.2</h3>
+              <p class="step-desc">Strict zero-dependency verification for screen reader accessibility, keyboard flow, and sub-second load times.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Main Content Area: Macro Layout with Main Content + Sidebar (As shown on Slide 5, 10 & 11) -->
+    <section class="section modules-section" id="architecture-grid" aria-labelledby="modules-title">
+      <div class="container layout-macro-grid">
+
+        <!-- Main Column: Filter Controls & Card Grid -->
+        <div class="content-primary">
+          <header class="modules-header">
+            <div>
+              <span class="section-tag">Interactive Curriculum</span>
+              <h2 id="modules-title" class="section-title">Technical Mastery Modules</h2>
+              <p class="section-subtitle">Core knowledge units required to satisfy DecodeLabs Project 1 qualification criteria.</p>
+            </div>
+
+            <!-- Filter Controls -->
+            <div class="filter-toolbar" role="region" aria-label="Curriculum Filter Controls">
+              <div class="filter-pills" role="tablist" aria-label="Filter modules by category">
+                <button type="button" class="filter-pill active" role="tab" aria-selected="true" data-filter="all">All Modules (<span id="count-all">8</span>)</button>
+                <button type="button" class="filter-pill" role="tab" aria-selected="false" data-filter="foundations">Foundations</button>
+                <button type="button" class="filter-pill" role="tab" aria-selected="false" data-filter="layout">Layout Systems</button>
+                <button type="button" class="filter-pill" role="tab" aria-selected="false" data-filter="aesthetics">Aesthetics & WCAG</button>
+                <button type="button" class="filter-pill" role="tab" aria-selected="false" data-filter="logic">Logic & State</button>
+              </div>
+
+              <!-- Quick View Toggle -->
+              <div class="view-density-toggle" aria-label="Layout view mode">
+                <button type="button" class="density-btn active" id="view-grid-btn" aria-label="Grid View" title="Grid View">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                </button>
+                <button type="button" class="density-btn" id="view-list-btn" aria-label="List View" title="List View">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+                </button>
+              </div>
+            </div>
+          </header>
+
+          <!-- Search Feedback Status -->
+          <div id="filter-status-msg" class="filter-status-msg" aria-live="polite"></div>
+
+          <!-- Dynamic Articles Grid -->
+          <div class="cards-grid" id="cards-container">
+
+            <!-- Card 1: Semantic HTML5 -->
+            <article class="content-card" data-category="foundations" data-id="mod-1" tabindex="0">
+              <div class="card-visual">
+                <svg width="100%" height="160" viewBox="0 0 400 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect width="400" height="160" fill="var(--color-mocha-light)"/>
+                  <rect x="30" y="20" width="340" height="28" rx="4" fill="var(--color-mocha)" fill-opacity="0.8"/>
+                  <text x="50" y="39" fill="var(--color-moonlit)" font-family="Montserrat, sans-serif" font-size="12" font-weight="600">&lt;header&gt; &amp; &lt;nav&gt; — Wayfinding</text>
+                  <rect x="30" y="56" width="220" height="58" rx="4" fill="var(--color-ethereal)" fill-opacity="0.25" stroke="var(--color-mocha)" stroke-width="1.5"/>
+                  <text x="45" y="85" fill="var(--color-espresso)" font-family="Montserrat, sans-serif" font-size="12" font-weight="600">&lt;main&gt; Core Narrative</text>
+                  <rect x="260" y="56" width="110" height="58" rx="4" fill="var(--color-mocha)" fill-opacity="0.15" stroke="var(--color-mocha)" stroke-width="1.5" stroke-dasharray="3 3"/>
+                  <text x="272" y="85" fill="var(--color-espresso)" font-family="Open Sans, sans-serif" font-size="11">&lt;aside&gt; Meta</text>
+                  <rect x="30" y="122" width="340" height="24" rx="4" fill="var(--color-mocha)" fill-opacity="0.4"/>
+                  <text x="50" y="138" fill="var(--color-espresso)" font-family="Open Sans, sans-serif" font-size="11">&lt;footer&gt; Terminal Metadata</text>
+                </svg>
+                <span class="card-badge">Foundations</span>
+                <button type="button" class="btn-bookmark" data-bookmark-id="mod-1" aria-label="Bookmark Semantic HTML5 Infrastructure module" title="Bookmark Module">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+                </button>
+              </div>
+              <div class="card-content">
+                <div class="card-meta">
+                  <span class="meta-time">6 min read</span>
+                  <span class="meta-bullet" aria-hidden="true">•</span>
+                  <span class="meta-req">Slide 10 Standard</span>
+                </div>
+                <h3 class="card-title">Semantic HTML5: Structural Meaning Over Div-Soup</h3>
+                <p class="card-excerpt">
+                  Why semantic landmarks like <code>&lt;main&gt;</code>, <code>&lt;article&gt;</code>, and <code>&lt;aside&gt;</code> are the bedrock of modern accessibility and algorithmic indexing.
+                </p>
+                <div class="card-footer">
+                  <button type="button" class="btn-text-link" data-open-modal="mod-1">
+                    <span>Inspect Blueprint</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 2: CSS Grid Macro Layouts -->
+            <article class="content-card" data-category="layout" data-id="mod-2" tabindex="0">
+              <div class="card-visual">
+                <svg width="100%" height="160" viewBox="0 0 400 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect width="400" height="160" fill="#E4DCD3"/>
+                  <!-- 2D Floorplan Grid Visual -->
+                  <rect x="25" y="20" width="350" height="25" rx="3" fill="var(--color-mocha)"/>
+                  <rect x="25" y="52" width="100" height="70" rx="3" fill="var(--color-mocha)" fill-opacity="0.3"/>
+                  <rect x="135" y="52" width="240" height="70" rx="3" fill="var(--color-ethereal)" fill-opacity="0.4" stroke="var(--color-mocha)" stroke-width="1.5"/>
+                  <rect x="25" y="128" width="350" height="20" rx="3" fill="var(--color-mocha)" fill-opacity="0.6"/>
+                  <text x="180" y="92" fill="var(--color-espresso)" font-family="Montserrat, sans-serif" font-size="12" font-weight="700">grid-template-areas</text>
+                </svg>
+                <span class="card-badge">Layout Systems</span>
+                <button type="button" class="btn-bookmark" data-bookmark-id="mod-2" aria-label="Bookmark CSS Grid Macro Layouts module" title="Bookmark Module">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+                </button>
+              </div>
+              <div class="card-content">
+                <div class="card-meta">
+                  <span class="meta-time">8 min read</span>
+                  <span class="meta-bullet" aria-hidden="true">•</span>
+                  <span class="meta-req">Slide 11 Standard</span>
+                </div>
+                <h3 class="card-title">CSS Grid: Orchestrating the 2D Macro Floor-Plan</h3>
+                <p class="card-excerpt">
+                  Constructing responsive container topologies without media-query bloat using <code>grid-template-columns: minmax()</code> and named template areas.
+                </p>
+                <div class="card-footer">
+                  <button type="button" class="btn-text-link" data-open-modal="mod-2">
+                    <span>Inspect Blueprint</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 3: Flexbox Micro Components -->
+            <article class="content-card" data-category="layout" data-id="mod-3" tabindex="0">
+              <div class="card-visual">
+                <svg width="100%" height="160" viewBox="0 0 400 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect width="400" height="160" fill="#E6EEF0"/>
+                  <!-- Flexbox Navigation Alignment Visual -->
+                  <rect x="25" y="45" width="350" height="70" rx="6" fill="#FFFFFF" stroke="var(--color-ethereal)" stroke-width="2"/>
+                  <rect x="40" y="62" width="36" height="36" rx="4" fill="var(--color-mocha)"/>
+                  <rect x="90" y="70" width="45" height="18" rx="3" fill="var(--color-mocha-light)"/>
+                  <rect x="145" y="70" width="45" height="18" rx="3" fill="var(--color-mocha-light)"/>
+                  <rect x="200" y="70" width="45" height="18" rx="3" fill="var(--color-mocha-light)"/>
+                  <rect x="285" y="64" width="75" height="32" rx="4" fill="var(--color-ethereal)"/>
+                  <text x="300" y="84" fill="var(--color-espresso)" font-family="Open Sans, sans-serif" font-size="11" font-weight="600">Action</text>
+                  <text x="140" y="138" fill="var(--color-mocha)" font-family="Montserrat, sans-serif" font-size="11">justify-content: space-between</text>
+                </svg>
+                <span class="card-badge">Layout Systems</span>
+                <button type="button" class="btn-bookmark" data-bookmark-id="mod-3" aria-label="Bookmark Flexbox Micro Components module" title="Bookmark Module">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+                </button>
+              </div>
+              <div class="card-content">
+                <div class="card-meta">
+                  <span class="meta-time">5 min read</span>
+                  <span class="meta-bullet" aria-hidden="true">•</span>
+                  <span class="meta-req">Slide 11 Micro Standard</span>
+                </div>
+                <h3 class="card-title">Flexbox: Precision 1D Micro Alignments</h3>
+                <p class="card-excerpt">
+                  Mastering navigation bars, metadata rows, and pill clusters where content dictates intrinsic dynamic sizing and vertical centering.
+                </p>
+                <div class="card-footer">
+                  <button type="button" class="btn-text-link" data-open-modal="mod-3">
+                    <span>Inspect Blueprint</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 4: Fluid Typography via clamp() -->
+            <article class="content-card" data-category="aesthetics" data-id="mod-4" tabindex="0">
+              <div class="card-visual">
+                <svg width="100%" height="160" viewBox="0 0 400 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect width="400" height="160" fill="#EAE5E0"/>
+                  <!-- Fluid curve math graphic -->
+                  <path d="M30 120 C 120 120, 200 40, 370 40" stroke="var(--color-mocha)" stroke-width="3" fill="none"/>
+                  <circle cx="30" cy="120" r="5" fill="var(--color-mocha)"/>
+                  <circle cx="200" cy="80" r="6" fill="var(--color-ethereal)" stroke="var(--color-espresso)" stroke-width="2"/>
+                  <circle cx="370" cy="40" r="5" fill="var(--color-mocha)"/>
+                  <text x="35" y="110" fill="var(--color-espresso)" font-family="Montserrat, sans-serif" font-size="11">min: 1.25rem</text>
+                  <text x="180" y="70" fill="var(--color-espresso)" font-family="Montserrat, sans-serif" font-size="12" font-weight="700">4vw + 0.5rem</text>
+                  <text x="290" y="32" fill="var(--color-espresso)" font-family="Montserrat, sans-serif" font-size="11">max: 3rem</text>
+                </svg>
+                <span class="card-badge">Aesthetics & WCAG</span>
+                <button type="button" class="btn-bookmark" data-bookmark-id="mod-4" aria-label="Bookmark Fluid Typography module" title="Bookmark Module">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+                </button>
+              </div>
+              <div class="card-content">
+                <div class="card-meta">
+                  <span class="meta-time">7 min read</span>
+                  <span class="meta-bullet" aria-hidden="true">•</span>
+                  <span class="meta-req">Slide 9 & 11 Formula</span>
+                </div>
+                <h3 class="card-title">Fluid Typography: Replacing Breakpoints with clamp()</h3>
+                <p class="card-excerpt">
+                  Eliminating abrupt font-size snapping. Mathematical fluid scaling across 320px mobile to 1920px ultrawide displays with accessible fallbacks.
+                </p>
+                <div class="card-footer">
+                  <button type="button" class="btn-text-link" data-open-modal="mod-4">
+                    <span>Inspect Blueprint</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 5: 2025/2026 Grounded Aesthetic Palette -->
+            <article class="content-card" data-category="aesthetics" data-id="mod-5" tabindex="0">
+              <div class="card-visual">
+                <svg width="100%" height="160" viewBox="0 0 400 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect width="400" height="160" fill="#FAF8F5"/>
+                  <!-- Swatches -->
+                  <circle cx="80" cy="80" r="42" fill="#A5856F"/>
+                  <text x="45" y="140" fill="var(--color-espresso)" font-family="Montserrat, sans-serif" font-size="10" font-weight="600">#A5856F</text>
+                  <circle cx="200" cy="80" r="42" fill="#A0D4E0"/>
+                  <text x="165" y="140" fill="var(--color-espresso)" font-family="Montserrat, sans-serif" font-size="10" font-weight="600">#A0D4E0</text>
+                  <circle cx="320" cy="80" r="42" fill="#F2F0EA" stroke="#A5856F" stroke-width="2"/>
+                  <text x="285" y="140" fill="var(--color-espresso)" font-family="Montserrat, sans-serif" font-size="10" font-weight="600">#F2F0EA</text>
+                </svg>
+                <span class="card-badge">Aesthetics & WCAG</span>
+                <button type="button" class="btn-bookmark" data-bookmark-id="mod-5" aria-label="Bookmark Grounded Aesthetic Palette module" title="Bookmark Module">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+                </button>
+              </div>
+              <div class="card-content">
+                <div class="card-meta">
+                  <span class="meta-time">4 min read</span>
+                  <span class="meta-bullet" aria-hidden="true">•</span>
+                  <span class="meta-req">Slide 9 Palette</span>
+                </div>
+                <h3 class="card-title">Warmth & Grounding: The 2025/2026 Color Palette</h3>
+                <p class="card-excerpt">
+                  Moving past cold sterile tech interfaces. Integrating Mocha Mousse, Ethereal Blue, and Moonlit Grey for organic, human-centered digital spaces.
+                </p>
+                <div class="card-footer">
+                  <button type="button" class="btn-text-link" data-open-modal="mod-5">
+                    <span>Inspect Blueprint</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 6: Pure Vanilla State Management -->
+            <article class="content-card" data-category="logic" data-id="mod-6" tabindex="0">
+              <div class="card-visual">
+                <svg width="100%" height="160" viewBox="0 0 400 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect width="400" height="160" fill="#E8EEF2"/>
+                  <!-- Reactive state loop -->
+                  <circle cx="120" cy="80" r="35" fill="none" stroke="var(--color-mocha)" stroke-width="3" stroke-dasharray="4 4"/>
+                  <circle cx="280" cy="80" r="35" fill="none" stroke="var(--color-ethereal)" stroke-width="3"/>
+                  <path d="M158 70 L242 70" stroke="var(--color-espresso)" stroke-width="2" marker-end="url(#arrow)"/>
+                  <path d="M242 90 L158 90" stroke="var(--color-espresso)" stroke-width="2"/>
+                  <text x="85" y="85" fill="var(--color-espresso)" font-family="Montserrat, sans-serif" font-size="12" font-weight="700">Event</text>
+                  <text x="245" y="85" fill="var(--color-espresso)" font-family="Montserrat, sans-serif" font-size="12" font-weight="700">DOM Sync</text>
+                  <text x="135" y="130" fill="var(--color-mocha)" font-family="Open Sans, sans-serif" font-size="11">Zero Dependencies</text>
+                </svg>
+                <span class="card-badge">Logic & State</span>
+                <button type="button" class="btn-bookmark" data-bookmark-id="mod-6" aria-label="Bookmark Vanilla State Management module" title="Bookmark Module">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+                </button>
+              </div>
+              <div class="card-content">
+                <div class="card-meta">
+                  <span class="meta-time">9 min read</span>
+                  <span class="meta-bullet" aria-hidden="true">•</span>
+                  <span class="meta-req">Slide 7 & 12 Logic</span>
+                </div>
+                <h3 class="card-title">Reactive State Without Framework Overhead</h3>
+                <p class="card-excerpt">
+                  Managing client application state, LocalStorage persistence, accessibility aria-attributes, and keyboard trap dispatch in under 5KB of clean JS.
+                </p>
+                <div class="card-footer">
+                  <button type="button" class="btn-text-link" data-open-modal="mod-6">
+                    <span>Inspect Blueprint</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 7: WCAG 2.2 AA/AAA Auditing -->
+            <article class="content-card" data-category="aesthetics" data-id="mod-7" tabindex="0">
+              <div class="card-visual">
+                <svg width="100%" height="160" viewBox="0 0 400 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect width="400" height="160" fill="#EAE3DE"/>
+                  <!-- Accessibility shield & contrast gauge -->
+                  <circle cx="200" cy="80" r="45" fill="var(--color-mocha)" fill-opacity="0.2" stroke="var(--color-mocha)" stroke-width="2"/>
+                  <path d="M200 50 L225 65 V95 C225 110 200 120 200 120 C200 120 175 110 175 95 V65 Z" fill="var(--color-mocha)"/>
+                  <path d="M192 82 L198 88 L209 76" stroke="var(--color-moonlit)" stroke-width="2.5" stroke-linecap="round"/>
+                  <text x="60" y="85" fill="var(--color-espresso)" font-family="Montserrat, sans-serif" font-size="11" font-weight="700">Contrast &gt; 7:1</text>
+                  <text x="270" y="85" fill="var(--color-espresso)" font-family="Montserrat, sans-serif" font-size="11" font-weight="700">ARIA Trees</text>
+                </svg>
+                <span class="card-badge">Aesthetics & WCAG</span>
+                <button type="button" class="btn-bookmark" data-bookmark-id="mod-7" aria-label="Bookmark WCAG 2.2 Auditing module" title="Bookmark Module">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+                </button>
+              </div>
+              <div class="card-content">
+                <div class="card-meta">
+                  <span class="meta-time">10 min read</span>
+                  <span class="meta-bullet" aria-hidden="true">•</span>
+                  <span class="meta-req">Slide 6 & 12 Audit</span>
+                </div>
+                <h3 class="card-title">Strict WCAG Adherence: Auditing LCP, CLS & Universal Access</h3>
+                <p class="card-excerpt">
+                  Building for all humans and AI agents alike. Verifying contrast ratios, focus visible rings, keyboard navigability, and Cumulative Layout Shift.
+                </p>
+                <div class="card-footer">
+                  <button type="button" class="btn-text-link" data-open-modal="mod-7">
+                    <span>Inspect Blueprint</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 8: Empathy Maps & Grayscale Wireframing -->
+            <article class="content-card" data-category="foundations" data-id="mod-8" tabindex="0">
+              <div class="card-visual">
+                <svg width="100%" height="160" viewBox="0 0 400 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect width="400" height="160" fill="#E0DCD6"/>
+                  <!-- Empathy quadrant circle -->
+                  <circle cx="200" cy="80" r="50" fill="#FFFFFF" stroke="var(--color-mocha)" stroke-width="1.5"/>
+                  <line x1="200" y1="30" x2="200" y2="130" stroke="var(--color-mocha)" stroke-width="1" stroke-dasharray="2 2"/>
+                  <line x1="150" y1="80" x2="250" y2="80" stroke="var(--color-mocha)" stroke-width="1" stroke-dasharray="2 2"/>
+                  <text x="165" y="60" fill="var(--color-espresso)" font-family="Montserrat, sans-serif" font-size="10" font-weight="600">Says</text>
+                  <text x="210" y="60" fill="var(--color-espresso)" font-family="Montserrat, sans-serif" font-size="10" font-weight="600">Thinks</text>
+                  <text x="165" y="110" fill="var(--color-espresso)" font-family="Montserrat, sans-serif" font-size="10" font-weight="600">Does</text>
+                  <text x="210" y="110" fill="var(--color-espresso)" font-family="Montserrat, sans-serif" font-size="10" font-weight="600">Feels</text>
+                </svg>
+                <span class="card-badge">Foundations</span>
+                <button type="button" class="btn-bookmark" data-bookmark-id="mod-8" aria-label="Bookmark Empathy Maps module" title="Bookmark Module">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+                </button>
+              </div>
+              <div class="card-content">
+                <div class="card-meta">
+                  <span class="meta-time">6 min read</span>
+                  <span class="meta-bullet" aria-hidden="true">•</span>
+                  <span class="meta-req">Slide 8 Blueprint</span>
+                </div>
+                <h3 class="card-title">Strategy & Soil Testing: Empathy Maps & Grayscale Prototyping</h3>
+                <p class="card-excerpt">
+                  Why real developers never jump straight into code. How low-fidelity wireframing exposes critical UX bottlenecks before writing a single tag.
+                </p>
+                <div class="card-footer">
+                  <button type="button" class="btn-text-link" data-open-modal="mod-8">
+                    <span>Inspect Blueprint</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                  </button>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- Sidebar Column: Persistent Architectural Tooling (As mandated on Slide 5 & 11) -->
+        <aside class="content-sidebar" aria-label="Internship Tooling & Guidelines">
+          
+          <!-- Qualification Criteria Widget (Slide 3) -->
+          <div class="sidebar-widget widget-qualification">
+            <div class="widget-header">
+              <span class="widget-icon">🛡️</span>
+              <h3 class="widget-title">Qualification Criteria</h3>
+            </div>
+            <ul class="checklist" role="list">
+              <li class="checklist-item checked">
+                <span class="check-icon">✓</span>
+                <span><strong>Pure Vanilla:</strong> 0 external runtime dependencies or CSS frameworks.</span>
+              </li>
+              <li class="checklist-item checked">
+                <span class="check-icon">✓</span>
+                <span><strong>Responsive:</strong> Verified at 360px, 768px, and 1024px+ breakpoints.</span>
+              </li>
+              <li class="checklist-item checked">
+                <span class="check-icon">✓</span>
+                <span><strong>Semantic:</strong> Correct HTML5 landmarks throughout.</span>
+              </li>
+              <li class="checklist-item checked">
+                <span class="check-icon">✓</span>
+                <span><strong>Aesthetic:</strong> Mocha Mousse, Ethereal Blue & Moonlit Grey palette.</span>
+              </li>
+            </ul>
+            <div class="widget-callout">
+              <p><strong>Mandatory:</strong> Complete Project 1 to unlock Week 2 Full-Stack Milestones.</p>
+            </div>
+          </div>
+
+          <!-- Color Tokens Quick Reference (Slide 9) -->
+          <div class="sidebar-widget widget-tokens" id="design-system">
+            <div class="widget-header">
+              <span class="widget-icon">🎨</span>
+              <h3 class="widget-title">2025/2026 Style Tokens</h3>
+            </div>
+            <div class="tokens-list">
+              <div class="token-row">
+                <span class="swatch" style="background-color: #A5856F;"></span>
+                <div class="token-info">
+                  <strong>Mocha Mousse</strong>
+                  <code>#A5856F</code> • Stability
+                </div>
+                <button type="button" class="copy-hex-btn" data-copy="#A5856F" aria-label="Copy Mocha Mousse Hex code">Copy</button>
+              </div>
+              <div class="token-row">
+                <span class="swatch" style="background-color: #A0D4E0;"></span>
+                <div class="token-info">
+                  <strong>Ethereal Blue</strong>
+                  <code>#A0D4E0</code> • Trust
+                </div>
+                <button type="button" class="copy-hex-btn" data-copy="#A0D4E0" aria-label="Copy Ethereal Blue Hex code">Copy</button>
+              </div>
+              <div class="token-row">
+                <span class="swatch" style="background-color: #F2F0EA; border: 1px solid #ccc;"></span>
+                <div class="token-info">
+                  <strong>Moonlit Grey</strong>
+                  <code>#F2F0EA</code> • Refinement
+                </div>
+                <button type="button" class="copy-hex-btn" data-copy="#F2F0EA" aria-label="Copy Moonlit Grey Hex code">Copy</button>
+              </div>
+            </div>
+            <div class="typography-rule">
+              <p class="small-text"><strong>Typography Pairings:</strong><br>
+              Headlines: Montserrat (Geometric)<br>
+              Body: Open Sans (Readable)<br>
+              <em>Constraint: Max 2 font families, 3 weights.</em></p>
+            </div>
+          </div>
+
+          <!-- Quick Interactive Breakpoint Tester Tool -->
+          <div class="sidebar-widget widget-viewport-checker">
+            <div class="widget-header">
+              <span class="widget-icon">📐</span>
+              <h3 class="widget-title">Live Viewport Diagnostic</h3>
+            </div>
+            <div class="viewport-stats">
+              <div class="vp-row">
+                <span>Window Width:</span>
+                <strong id="vp-width">-- px</strong>
+              </div>
+              <div class="vp-row">
+                <span>Active Target:</span>
+                <strong id="vp-target" class="target-tag">Detecting...</strong>
+              </div>
+            </div>
+            <p class="small-text">Breakpoints: Mobile (&lt;768px), Tablet (&ge;768px), Desktop (&ge;1024px).</p>
+          </div>
+
+          <!-- Mentorship Support Card (Slide 15 Contact Details) -->
+          <div class="sidebar-widget widget-contact">
+            <div class="widget-header">
+              <span class="widget-icon">🚀</span>
+              <h3 class="widget-title">DecodeLabs Support</h3>
+            </div>
+            <address class="contact-details">
+              <p><span class="contact-icon">📞</span> <a href="tel:+918933006408">+91 89330 06408</a></p>
+              <p><span class="contact-icon">✉️</span> <a href="mailto:decodelabs.tech@gmail.com">decodelabs.tech@gmail.com</a></p>
+              <p><span class="contact-icon">🌐</span> <a href="https://www.decodelabs.tech" target="_blank" rel="noopener noreferrer">www.decodelabs.tech</a></p>
+              <p><span class="contact-icon">📍</span> Greater Lucknow, India</p>
+            </address>
+          </div>
+
+        </aside>
+
+      </div>
+    </section>
+
+    <!-- Standards & WCAG Audit Section (Slide 6 & 11) -->
+    <section class="section audit-section" id="audit-standards" aria-labelledby="standards-title">
+      <div class="container">
+        <header class="section-header">
+          <span class="section-tag">Quality Verification</span>
+          <h2 id="standards-title" class="section-title">The Three Quality Standards</h2>
+          <p class="section-subtitle">Before deploying to staging, verify the three core tenets mandated in the training kit.</p>
+        </header>
+
+        <div class="standards-grid">
+          <div class="standard-card">
+            <div class="standard-icon-circle">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+            </div>
+            <h3>Semantic Integrity</h3>
+            <p>Code structured for AI agents, search engines, and screen reader parsing. No generic nested divs where a landmark belongs.</p>
+          </div>
+
+          <div class="standard-card">
+            <div class="standard-icon-circle">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+            </div>
+            <h3>Warm Grounded Aesthetics</h3>
+            <p>Mocha Mousse (#A5856F) and Moonlit Grey (#F2F0EA) paired with Ethereal Blue (#A0D4E0) creates calm, human-focused digital workspaces.</p>
+          </div>
+
+          <div class="standard-card">
+            <div class="standard-icon-circle">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            </div>
+            <h3>Universal Access (WCAG 2.2)</h3>
+            <p>Minimum contrast ratios (&gt; 4.5:1 text, &gt; 3:1 UI), keyboard focus indicators, landmark wayfinding, and fluid scaling.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Intern Interactive Workspace Sandbox (Hands-on Practice) -->
+    <section class="section sandbox-section" id="interactive-sandbox" aria-labelledby="sandbox-title">
+      <div class="container">
+        <div class="sandbox-card">
+          <div class="sandbox-intro">
+            <span class="section-tag">Interactive Workshop</span>
+            <h2 id="sandbox-title">Test The Fluid clamp() Engine</h2>
+            <p>Slide the slider to simulate viewport scaling and see how <code>clamp()</code> computes mathematical typography without harsh media jumps.</p>
+          </div>
+          <div class="sandbox-controls">
+            <label for="fluid-slider" class="slider-label">
+              <span>Simulated Viewport Width:</span>
+              <strong id="slider-val">768px</strong>
+            </label>
+            <input type="range" id="fluid-slider" min="320" max="1440" value="768" class="custom-range" aria-valuemin="320" aria-valuemax="1440" aria-valuenow="768" aria-label="Simulated Viewport Width Slider">
+          </div>
+          <div class="sandbox-preview">
+            <div class="preview-output" id="clamp-live-preview">
+              <span class="live-sample-heading">Responsive Architecture in Action</span>
+              <p class="live-sample-body">
+                Calculated Font Size: <code id="calculated-font-size">1.75rem (28px)</code> — Computed dynamically via pure CSS!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive Modal for Module Deep Dive -->
+  <dialog class="modal-dialog" id="module-modal" aria-labelledby="modal-title" aria-modal="true">
+    <div class="modal-wrapper">
+      <div class="modal-header">
+        <span class="badge" id="modal-category">Foundations</span>
+        <button type="button" class="modal-close-btn" id="modal-close-btn" aria-label="Close module details modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <h2 id="modal-title" class="modal-heading">Module Title</h2>
+        <div class="modal-meta" id="modal-meta">6 min read • Slide Reference</div>
+        <div class="modal-text" id="modal-text">
+          Detailed module architectural blueprint content goes here.
+        </div>
+        <div class="modal-code-snippet">
+          <pre><code id="modal-code">// Code snippet example</code></pre>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="modal-secondary-close">Close</button>
+        <button type="button" class="btn btn-primary" id="modal-bookmark-action">
+          <span id="modal-bookmark-text">Save Module</span>
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Saved Bookmarks Drawer / Flyout -->
+  <aside class="bookmarks-drawer" id="bookmarks-drawer" aria-label="Saved Curriculum Modules" aria-hidden="true">
+    <div class="drawer-header">
+      <div class="drawer-title-group">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+        <h3>Saved Modules</h3>
+      </div>
+      <button type="button" class="drawer-close-btn" id="drawer-close-btn" aria-label="Close saved modules drawer">&times;</button>
+    </div>
+    <div class="drawer-body" id="saved-modules-list">
+      <p class="empty-state-msg">No modules saved yet. Click the bookmark icon on any module card to save it for offline review.</p>
+    </div>
+  </aside>
+  <div class="drawer-backdrop" id="drawer-backdrop" aria-hidden="true"></div>
+
+  <!-- Toast Notification Container (ARIA Live) -->
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Global Footer Landmark (Slide 5, 10, 15) -->
+  <footer class="site-footer" id="site-footer">
+    <div class="container footer-grid">
+      <!-- Brand & Mission Column -->
+      <div class="footer-col brand-col">
+        <a href="#" class="footer-logo">
+          <svg width="28" height="28" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="36" height="36" rx="8" fill="var(--color-mocha)"/>
+            <path d="M8 26L18 10L28 26H8Z" stroke="var(--color-moonlit)" stroke-width="2.2" stroke-linejoin="round"/>
+            <circle cx="18" cy="20" r="3.5" fill="var(--color-ethereal)"/>
+          </svg>
+          <span>Decode<strong>Labs</strong></span>
+        </a>
+        <p class="footer-desc">
+          Empowering the next generation of full-stack engineers with industrial-grade standards, semantic precision, and empathetic user experience.
+        </p>
+        <p class="footer-cohort">
+          <strong>Full Stack Development Track</strong><br>
+          Industrial Training Kit • Batch: 2026
+        </p>
+      </div>
+
+      <!-- Quick Links Column -->
+      <div class="footer-col">
+        <h4 class="footer-heading">Curriculum</h4>
+        <ul class="footer-links" role="list">
+          <li><a href="#blueprint">The Blueprint</a></li>
+          <li><a href="#execution-roadmap">Execution Roadmap</a></li>
+          <li><a href="#architecture-grid">Technical Modules</a></li>
+          <li><a href="#design-system">Design System & Tokens</a></li>
+          <li><a href="#audit-standards">WCAG 2.2 Standards</a></li>
+        </ul>
+      </div>
+
+      <!-- Specifications Column -->
+      <div class="footer-col">
+        <h4 class="footer-heading">Specification</h4>
+        <ul class="footer-links" role="list">
+          <li><span>Vanilla HTML5 / CSS3 / JS</span></li>
+          <li><span>Mobile-First (360 / 768 / 1024)</span></li>
+          <li><span>Fluid clamp() Typography</span></li>
+          <li><span>CSS Grid Macro + Flexbox Micro</span></li>
+          <li><span>WCAG AAA Accessible Tree</span></li>
+        </ul>
+      </div>
+
+      <!-- Contact & Headquarters Column (From Slide 15) -->
+      <div class="footer-col">
+        <h4 class="footer-heading">Headquarters</h4>
+        <address class="footer-address">
+          <p>📍 Greater Lucknow, India</p>
+          <p>📞 <a href="tel:+918933006408">+91 89330 06408</a></p>
+          <p>✉️ <a href="mailto:decodelabs.tech@gmail.com">decodelabs.tech@gmail.com</a></p>
+          <p>🌐 <a href="https://www.decodelabs.tech" target="_blank" rel="noopener noreferrer">www.decodelabs.tech</a></p>
+        </address>
+      </div>
+    </div>
+
+    <!-- Sub-footer Bar -->
+    <div class="footer-sub-bar">
+      <div class="container sub-bar-inner">
+        <p>&copy; 2026 DecodeLabs. All rights reserved. Industrial Training Kit Project 1.</p>
+        <div class="sub-links">
+          <span>Crafted with pure HTML5, CSS3, &amp; Vanilla JavaScript</span>
+          <a href="#site-header" class="back-to-top" aria-label="Return to top of page">
+            <span>Back to top</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="18 15 12 9 6 15"></polyline></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Vanilla Application Logic -->
+  <script src="scripts/app.js"></script>
+</body>
+</html>
